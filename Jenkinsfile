@@ -1,23 +1,22 @@
 pipeline {
 	agent any
 
+	parameters{
+		environment{
+			IMAGE_NAME = "trivy-scan:1"
+		}
+	}
 	stages {
-		stage("Install") {
+		stage("Build") {
 			
 			steps {
-				sh './scripts/install.sh'
+				sh 'cd src/main/docker && docker build docker build -t trivy-scan:1 . '
 			}
 		}
 		stage("Scan") {
 			
 			steps {
-				sh './scripts/scan.sh'
-			}
-		}
-		stage("Run") {
-			
-			steps {
-				sh './scripts/install.sh'
+				sh 'trivy image ${IMAGE_NAME}'
 			}
 		}
 	}

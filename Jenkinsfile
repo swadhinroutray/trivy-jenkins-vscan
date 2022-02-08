@@ -10,10 +10,7 @@ pipeline {
 		stage("Install") {
 			
 			steps {
-				sh 'mvn clean install'
-				sh 'cp -r target/docker-java-sample-webapp-1.0-SNAPSHOT.war src/main/docker/' 
-				sh 'cd src/main/docker'
-				sh "docker build -t trivy-scan:1 . "
+				sh './scripts/install.sh'
 			}
 		}
 		stage("Scan") {

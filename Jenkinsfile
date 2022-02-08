@@ -1,10 +1,5 @@
 pipeline {
-	agent{
-		docker{
-			image "maven:latest"
-			label "docker" 
-		}
-	}
+	agent any
 
 	stages {
 		stage("Install") {

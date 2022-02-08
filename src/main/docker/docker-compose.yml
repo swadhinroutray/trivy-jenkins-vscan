@@ -1,0 +1,9 @@
+version: "2"
+services:
+  web:
+    image: "java-sample-webapp"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    build: .
+    ports:
+      - "8080:8080"

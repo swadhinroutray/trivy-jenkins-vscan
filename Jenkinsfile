@@ -1,11 +1,12 @@
 pipeline {
 	agent any
 
-	parameters{
-		environment{
-			IMAGE_NAME = "trivy-scan:1"
-		}
-	}
+	// parameters{
+	// 	environment{
+	// 		IMAGE_NAME = "trivy-scan:1"
+	// 	}
+	// }
+	
 	stages {
 		stage("Build") {
 			
@@ -16,7 +17,7 @@ pipeline {
 		stage("Scan") {
 			
 			steps {
-				sh 'trivy image ${IMAGE_NAME}'
+				sh 'trivy image trivy-scan:1'
 			}
 		}
 	}

@@ -14,7 +14,7 @@ docker build -t trivy-scan:1 .
 echo "Docker Build Complete, starting Trivy Scan"
 
 
-trivy image trivy-scan:1 
+trivy image trivy-scan:1
 
 
 echo "Starting Container on port 8080"

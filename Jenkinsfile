@@ -20,10 +20,23 @@ pipeline {
 		stage("Scan") {
 
 			steps {
-				sh '${TRIVY_HOST}/trivy image ${IMAGE_NAME}'
+				sh '${TRIVY_HOST}/trivy image ${IMAGE_NAME} > scan.txt'
 			}
 		}
 	}
+	post {
+        always {
+            archiveArtifacts artifacts: 'scan.txt', onlyIfSuccessful: true
+            
+            echo 'I will always say Hello again!'
+                
+            emailext attachLog: true, attachmentsPattern: 'scan.txt',
+                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                recipientProviders: [developers(), requestor()],
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+            
+        }
+    }
 
 	
 }

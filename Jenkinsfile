@@ -12,7 +12,8 @@ pipeline {
 	stages {
 		stage('initialize') {
 			steps {
-				sh 	"export PATH=$PATH:/usr/local/bin"
+				sh 	"export PATH=/usr/local/bin"
+				sh 	"env"
 				sh	"docker version" // DOCKER_CERT_PATH is automatically picked up by the Docker client
 			}
 		}

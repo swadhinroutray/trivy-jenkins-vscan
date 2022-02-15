@@ -11,19 +11,13 @@ pipeline {
 	// aquasec/trivy
 	
 	stages {
-		stage('initialize') {
-			steps {
+		// stage('initialize') {
+		// 	steps {
 				
-				sh	"${DOCKER_HOST}/docker version" // DOCKER_CERT_PATH is automatically picked up by the Docker client
-			}
-		}
+		// 		sh	"${DOCKER_HOST}/docker version" // DOCKER_CERT_PATH is automatically picked up by the Docker client
+		// 	}
+		// }
 		stage("Scan") {
-			// agent {
-            //    docker {
-            //         image 'aquasec/trivy'
-			// 		reuseNode true
-            //     }
-            // }
 
 			steps {
 				sh '${TRIVY_HOST}/trivy image ${IMAGE_NAME}'

@@ -27,9 +27,11 @@ pipeline {
 	post {
         always {
             echo 'Sending email notification'
-                
+             sh 'cat scan.txt'
+			    
                 emailext attachmentsPattern: 'scan.txt',
                 to: 'swadhin.routray@gmail.com',
+				from: "Jenkins",
 				body: 'Here is the Scan report for Trivy',
                 subject: "Trivy Scan Report"
             

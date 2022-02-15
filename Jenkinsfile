@@ -1,8 +1,8 @@
 pipeline {
 	agent any
 
-	parameters{
-		environment{
+	parameters {
+		environment {
 			IMAGE_NAME = "swadhinroutray/trivy-scan:latest"
 		}
 	}

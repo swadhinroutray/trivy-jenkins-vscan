@@ -26,12 +26,12 @@ pipeline {
 	}
 	post {
         always {
-            echo 'I will always say Hello again!'
+            echo 'Sending email notification'
                 
-            emailext attachmentsPattern: 'scan.txt',
-                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                recipientProviders: [developers(), requestor()],
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+                emailext attachmentsPattern: 'scan.txt',
+                to: 'swadhin.routray@gmail.com'
+				body: 'Here is the Scan report for Trivy',
+                subject: "Trivy Scan Report"
             
         }
     }

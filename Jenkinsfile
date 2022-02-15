@@ -1,11 +1,11 @@
 pipeline {
 	agent any
 
-	parameters {
-		environment {
-			IMAGE_NAME = "swadhinroutray/trivy-scan:latest"
+	
+	environment {
+		IMAGE_NAME = "swadhinroutray/trivy-scan:latest"
 		}
-	}
+	
 	// aquasec/trivy
 	stages {
 		stage("Scan") {

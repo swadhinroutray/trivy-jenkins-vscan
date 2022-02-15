@@ -7,14 +7,13 @@ pipeline {
 		}
 	
 	// aquasec/trivy
+	
 	stages {
-    stage('checkDocker') {
-      steps {
-        sh "docker version" // DOCKER_CERT_PATH is automatically picked up by the Docker client
-      }
-    }
-  }
-	stages {
+		stage('checkDocker') {
+			steps {
+				sh "docker version" // DOCKER_CERT_PATH is automatically picked up by the Docker client
+			}
+		}
 		stage("Scan") {
 			agent {
                 docker {

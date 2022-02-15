@@ -25,7 +25,7 @@ pipeline {
             // }
 
 			steps {
-				sh '/opt/homebrew/opt/trivy image ${IMAGE_NAME}'
+				sh '/opt/homebrew/opt/trivy/bin/trivy image ${IMAGE_NAME}'
 			}
 		}
 	}

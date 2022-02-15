@@ -29,7 +29,7 @@ pipeline {
             echo 'Sending email notification'
                 
                 emailext attachmentsPattern: 'scan.txt',
-                to: 'swadhin.routray@gmail.com'
+                to: 'swadhin.routray@gmail.com',
 				body: 'Here is the Scan report for Trivy',
                 subject: "Trivy Scan Report"
             

@@ -1,23 +1,22 @@
 pipeline {
 	agent any
 
-	// parameters{
-	// 	environment{
-	// 		IMAGE_NAME = "trivy-scan:1"
-	// 	}
-	// }
-	
-	stages {
-		stage("Build") {
-			
-			steps {
-				sh 'cd src/main/docker && docker build docker build -t trivy-scan:1 . '
-			}
+	parameters{
+		environment{
+			IMAGE_NAME = "swadhinroutray/trivy-scan:latest"
 		}
+	}
+	// aquasec/trivy
+	stages {
 		stage("Scan") {
-			
+			agent {
+                docker {
+                    image 'aquasec/trivy'
+                }
+            }
+
 			steps {
-				sh 'trivy image trivy-scan:1'
+				sh 'trivy image ${IMAGE_NAME}'
 			}
 		}
 	}

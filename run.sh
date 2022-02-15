@@ -14,7 +14,7 @@ docker build -t trivy-scan:1 .
 echo "Docker Build Complete, starting Trivy Scan"
 
 
-trivy image trivy-scan:1
+trivy image ${DOCKER_OCBC_DEV_REPO}/oracle/billingcare:${RELEASE_VERSION}-${PIPELINE_TAG} > scan.txt
 
 
 echo "Starting Container on port 8080"
@@ -23,3 +23,4 @@ echo "Starting Container on port 8080"
 
 docker-compose up 
  
+# docker build -t ${DOCKER_OCBC_DEV_REPO}/oracle/billingcare:${RELEASE_VERSION}-${PIPELINE_TAG} .

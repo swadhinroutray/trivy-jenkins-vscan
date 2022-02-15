@@ -4,7 +4,8 @@ pipeline {
 	
 	environment {
 		IMAGE_NAME = "swadhinroutray/trivy-scan:latest"
-
+		DOCKER_HOST ='/usr/local/bin'
+		TRIVY_HOST  ='/opt/homebrew/opt/trivy/bin'
 		}
 	
 	// aquasec/trivy
@@ -13,7 +14,7 @@ pipeline {
 		stage('initialize') {
 			steps {
 				
-				sh	"/usr/local/bin/docker version" // DOCKER_CERT_PATH is automatically picked up by the Docker client
+				sh	"${DOCKER_HOST}/docker version" // DOCKER_CERT_PATH is automatically picked up by the Docker client
 			}
 		}
 		stage("Scan") {
@@ -25,7 +26,7 @@ pipeline {
             // }
 
 			steps {
-				sh '/opt/homebrew/opt/trivy/bin/trivy image ${IMAGE_NAME}'
+				sh '${TRIVY_HOST}/trivy image ${IMAGE_NAME}'
 			}
 		}
 	}

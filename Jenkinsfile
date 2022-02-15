@@ -4,19 +4,21 @@ pipeline {
 	
 	environment {
 		IMAGE_NAME = "swadhinroutray/trivy-scan:latest"
+
 		}
 	
 	// aquasec/trivy
 	
 	stages {
-		stage('checkDocker') {
+		stage('initialize') {
 			steps {
-				sh "/usr/local/bin/docker version" // DOCKER_CERT_PATH is automatically picked up by the Docker client
+				sh 	"export PATH=$PATH:/usr/local/bin"
+				sh	"docker version" // DOCKER_CERT_PATH is automatically picked up by the Docker client
 			}
 		}
 		stage("Scan") {
 			agent {
-                docker {
+               docker {
                     image 'aquasec/trivy'
 					reuseNode true
                 }

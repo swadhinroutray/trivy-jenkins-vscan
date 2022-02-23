@@ -9,7 +9,11 @@ pipeline {
 		}
 	
 	// aquasec/trivy
-	
+	options{
+		buildDiscarder(logRotator( artifactDaysToKeepStr: "${BRANCH_NAME}" == 'main'? '5': BRANCH_NAME.startsWith("release")? '3' : '1', 
+            daysToKeepStr: "${BRANCH_NAME}" == 'main' ? '5': BRANCH_NAME.startsWith("release")? '3':'1'
+        ))
+	}
 	stages {
 		// stage('initialize') {
 		// 	steps {
